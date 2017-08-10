@@ -1,0 +1,71 @@
+\definecolor{special_gray}{gray}{0.65}
+
+\mdfsetup{skipbelow=\topskip}
+
+\mdfdefinestyle{theoremstyle}{%
+	%apptotikzsetting={\tikzset{mdfframetitlebackground/.append 		style={fill=special_gray!45}}},
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=false,
+	%linewidth=2pt,
+	backgroundcolor=none,
+	apptotikzsetting={\tikzset{mdfbackground/.append style={fill=special_gray!20}}},
+	frametitlefont=\sffamily\bfseries\color{black},
+	splittopskip=.5cm,
+	roundcorner=10pt,
+	frametitlebelowskip=.3cm,
+	%linecolor=special_gray!45
+	%nobreak=true
+}%{theorem}{Теорема}[section]
+
+\mdfdefinestyle{remarkstyle}{%
+    %rightline=false,
+    %bottomline=false,
+    roundcorner=10pt,
+    linecolor=special_gray!20,
+    innertopmargin=5pt,
+    linewidth=3pt,
+    %frametitlerule=true,
+    %frametitlerulewidth=1pt,
+    %frametitlerulecolor=gray,
+    %nobreak=true
+}
+
+\mdfdefinestyle{examplestyle}{%
+    skipabove=\topsep,
+    skipbelow=\topsep,
+    linecolor=special_gray!20,
+    linewidth=1pt,
+    %hidealllines=true,
+    roundcorner=10pt,
+    %backgroundcolor=special_gray!10,
+    %innerleftmargin=3pt,
+    %innerrightmargin=3pt
+    innertopmargin=3pt,
+}
+
+\newtheoremstyle{mystyle}
+  {\topsep}   % ABOVESPACE
+  {\topsep}   % BELOWSPACE
+  {\itshape}  % BODYFONT
+  {0pt}       % INDENT (empty value is the same as 0pt)
+  {\bfseries} % HEADFONT
+  {\newline\newline}         % HEADPUNCT
+  {5pt plus 1pt minus 1pt} % HEADSPACE
+  {}          % CUSTOM-HEAD-SPEC
+
+\theoremstyle{plain}
+
+\mdtheorem[style=theoremstyle]{theorem}{Теорема}[section]
+\mdtheorem[style=theoremstyle]{lemma}[theorem]{Лемма}
+\mdtheorem[style=theoremstyle]{affirmation}[theorem]{Утверждение}
+\mdtheorem[style=remarkstyle]{remark}[theorem]{Замечание}
+\mdtheorem[style=remarkstyle]{consequence}[theorem]{Следствие}
+\mdtheorem[style=remarkstyle]{exercise}[theorem]{Упражнение}
+
+\theoremstyle{definition}
+\mdtheorem[style=theoremstyle]{definition}[theorem]{Определение}
+\mdtheorem[style=examplestyle]{example}[theorem]{Пример}
+
+\theoremstyle{remark}

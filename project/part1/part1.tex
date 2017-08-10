@@ -1,0 +1,371 @@
+\chapter{Нелинейные динамические системы}
+В настоящее время теория нелинейных динамических систем (НДС) представляет собой эффективный математический аппарат, нацеленный на качественное и количественное исследование поведения реальной системы (натуры).
+ 
+\section{Введение: фазовое пространство и его свойства}
+\begin{definition}[Фазовое пространство (ФП)]
+  \index{функция распределения!неизвестная}
+  \index{выборка}
+  Фазовое пространство --- это пространство состояний реальной системы; абстрактное математическое пространство, размерность которого определяется числом функций, необходимых для однозначного задания состояния реальной системы в некий момент времени.
+\end{definition}
+
+Функции, однозначно задающие состояние реальной системы в момент времени $t$:
+\begin{equation*}
+	x_i(t), \qquad i = \overline{1,n}.
+\end{equation*}
+
+Так как по осям координат ФП находятся значения $x_i(t)$, можно составить \textit{вектор состояния}:
+\begin{equation*}
+	\vec{x}_i(t) = (x_1(t), x_2(t), \ldots, x_n(t)).
+\end{equation*}
+
+Тогда эволюция состояния системы будет описана нелинейными (как правило) дифференциальными уравнениями (ДУ) $1$ порядка.
+\begin{equation} \label{eq:evol_system_state}
+	\frac{dx_i(t)}{dt} = f_i(x_1, x_2, \ldots, x_n, a_1, a_2, \ldots, a_k)
+\end{equation}
+
+или
+\begin{equation*}
+	\frac{d\vec{x}_i(t)}{dt} = \vec{F}(\vec{x}_i(t), t, \vec{a}).
+\end{equation*}
+
+где $a_j$ --- параметры системы, $j = \overline{1,k}$.
+
+\begin{definition}[Фазовая точка]
+	Фазовая (изображающая) точка --- это точка ФП, описывающая настоящее (в данный момент времени) состояние реальной системы.
+\end{definition}
+
+\begin{figure}[h!]
+	\center\includestandalone[]{tikz/phaseSpaceTrajectory}
+	\caption{Фазовая точка $x_0$ и траектория её движения.} 
+	\label{fig:tikz:phaseSpaceTrajectory}
+\end{figure}
+
+(\ref{eq:evol_system_state}) --- уравнение движения фазовой точки.
+
+\begin{definition}[Фазовая траектория (ФТр)]
+	Траектория движения фазовой точки называется фазовой траекторией.
+\end{definition}
+
+Для решения (\ref{eq:evol_system_state}) нужно знать начальные условия, то есть координаты точки, из которой выходит фазовая траектория.
+
+\begin{equation}\label{eq:start_condition}
+	t=t_0: \qquad x_i(t_0)=x_0, \qquad i=\overline{1,n}
+\end{equation}
+
+или
+\begin{equation*}
+	\vec{x}_i(t_0)=\vec{x}_0.
+\end{equation*}
+
+Если система неподвижна, то фазовая траектория --- это фазовая точка.
+
+\begin{definition}[Динамическая система (ДС)]
+	Система называется динамической, если она описывается уравнением (\ref{eq:evol_system_state}) и задание (\ref{eq:start_condition}) полностью определяет её поведение в последующие моменты времени.
+\end{definition}
+
+\begin{remark}
+	В геометрии ФП стоит отметить, что ФП с размерностью:
+	\begin{itemize}
+		\item $n=2k$ изучает симплектическая геометрия;
+		\item $n=2k+1$ изучает контактная геометрия.
+	\end{itemize}
+\end{remark}
+
+\begin{remark}
+	Уравнения движения могут быть записаны и в старших производных. Для того, чтобы свести их к виду (\ref{eq:evol_system_state}) вводим замену переменных.
+	\begin{eqnarray*}
+		\frac{d^2x_i}{dt^2}=f_i(x_k) \qquad \textnormal{Замена:} \quad y_i=\frac{dx_i}{dt} \\
+		\textnormal{Получаем систему:}
+		\begin{cases}
+			\frac{dy_i}{dt}=f_i(x_k) \\
+			\frac{dx_i}{dt}=y_i
+		\end{cases}
+	\end{eqnarray*}
+\end{remark}
+
+\begin{remark}
+	Число степеней свободы системы равно $\frac{n}{2}$, где $n$ --- размерность ФП.
+\end{remark}
+
+Более формально ДС принято определять следующим образом:
+
+\begin{definition}[Динамическая система (ДС)]
+	Пусть некоторый эволюционный оператор $\mathrm{T}^t$ преобразовывает некоторое начальное состояние $\mathrm{P}_0$ в момент времени $t_0$ в $\mathrm{P}(t)$ в момент времени $t$. \\
+	$$\mathrm{T}^t: \mathrm{P}_0 \rightarrow \mathrm{P}(t).$$ \\
+	Тогда под ДС понимается такая система, эволюционный оператор которой определяется соотношением:
+	$$\mathrm{T}^t\mathrm{T}^\tau = \mathrm{T}^{t+\tau}.$$ \\
+	То есть время аддитивно, а оператор мультипликативный. При этом подразумевается коммутируемость:
+	$$\mathrm{T}^t\mathrm{T}^\tau = \mathrm{T}^\tau\mathrm{T}^t.$$
+\end{definition}
+
+Задание ДС является постановкой задачи Коши. Согласно теореме Коши при заданных (\ref{eq:start_condition}) решение (\ref{eq:evol_system_state}) существует и оно единственное. Это утверждение приводит к следующим следствиям:
+\begin{itemize}
+	\item ФТр не самопересекаются.
+	\item Так как существует и обратная задача Коши (вводится замена $t=-t$), то пересечение двух и более ФТр также невозможно.
+	\item Если малое шевеление не изменяет ФТр системы, то такая система --- \textit{грубая} и к ней применима теорема Коши. В реальности негрубых систем гораздо больше, чем грубых, и для них существует \textit{горизонт прогноза}. Примеры негрубых систем: изменение индекса Доу Джонса, погода.
+	Также существуют системы только с вероятностными уравнениями, для которых даже невозможно записать уравнение движения (\ref{eq:evol_system_state}).
+\end{itemize}
+
+\begin{example}[Обычная ДС]
+	\begin{eqnarray*}
+		\ddot{x}(t) + b\dot{x}(t) + ax(t-\tau) = 0 \qquad 
+		\textnormal{Замена:} \frac{dx}{dt}=y \\
+		\textnormal{Получаем систему:}
+		\begin{cases}
+			\frac{dy}{dt}=-by-ax(t-\tau) \\
+			\frac{dx}{dt}=y
+		\end{cases}
+	\end{eqnarray*}	
+\end{example}
+
+\begin{definition}[Фазовый портрет]
+	Совокупность ФТр, соответствующих различным начальным условиям или значениям параметров называется фазовым портретом.
+\end{definition}
+
+Поведение ФТр дает информацию о поведении системы. Существуют методы, которые позволяют не решая систему уравнений, а исходя только из вида правой части (\ref{eq:evol_system_state}) получить представление о поведении ФТр системы. Это и есть задача качественной теории ДУ.
+
+\begin{definition}[Фазовая плоскость (ФПл)]
+	Фазовая плоскость --- это ФП с размерностью $2$.
+\end{definition}
+
+Уравнения, описывающие эволюцию ДС:
+\begin{eqnarray}\label{eq:phase_sirface}
+	\begin{cases}
+		\frac{dx_1}{dt}=f_1(x_1, x_2, t) \\
+		\frac{dx_2}{dt}=f_2(x_1, x_2, t).
+	\end{cases}
+\end{eqnarray}	
+
+Уравнение ФТр получаем из (\ref{eq:phase_sirface}):
+\begin{equation*}
+	\frac{dx_1}{dx_2}=\frac{f_1(x_1, x_2, t)}{f_2(x_1, x_2, t)}.
+\end{equation*}	
+
+Разнообразие поведения ФТр на ФПл ограничено теоремой Бендиксона-Пуанкаре. ФТр может:
+\begin{itemize}
+	\item уйти на бесконечность;
+	\item уткнуться в особую точку;
+	\item намотаться на предельный цикл.
+\end{itemize}
+
+Особые точки, они же неподвижные точки или стационарные точки определяются из уравнения (\ref{eq:spec_point}).
+
+\begin{equation}\label{eq:spec_point}
+	f_i(x_1, x_2, \ldots, x_n)=0, \qquad i=\overline{1,n}.
+\end{equation}	
+
+\begin{definition}[Автономная ДС]
+	Если в правой части (\ref{eq:evol_system_state}) при заданных значениях параметров время не входит в него явно, то такая ДС называется автономной.
+	\begin{equation*}
+		\frac{d\vec{x}}{dt}=\vec{F}(\vec{x}, \vec{a}).
+	\end{equation*}
+\end{definition}
+
+\subsection{Особые точки и особые траектории}
+
+Рассмотрим ФПл:
+\begin{eqnarray*}
+	\begin{cases}
+		\frac{dx_1}{dt}=f_1(x_1, x_2) \\
+		\frac{dx_2}{dt}=f_2(x_1, x_2).
+	\end{cases}
+\end{eqnarray*}
+
+Уравнение ФТр:
+\begin{equation*}
+	\frac{dx_1}{dx_2}=\frac{f_1(x_1, x_2)}{f_2(x_1, x_2)}.
+\end{equation*}
+
+\begin{enumerate}
+	\item Центр
+	\item Фокус
+	\item Узел
+	\item Предельный цикл
+	\item Седло
+\end{enumerate}
+
+В ФПл нет других особых точек (ОТ), кроме указанных, за исключением того случая, когда ОТ сближаются, а затем сливаются.
+
+Анализ таких ситуаций относится к разделу современной математики, который называется теорией структурной устойчивости или \textit{теорией катастроф}.
+
+\begin{definition}[Аттрактор]
+	ОТ или области ФП любой размерности, притягивающие ФТр, называются аттракторами.
+\end{definition}
+
+\section{Теорема Лиувилля-Остроградского}
+
+Рассмотрим в $n$-мерном ФП автономную ДС.
+\begin{equation}\label{eq:moving}
+	\frac{d\vec{x}}{dt}=\vec{f}(\vec{x}(t)),
+\end{equation}
+
+где $\vec{x}=(x_1, x_2, \ldots, x_n), \vec{f}=(f_1, f_2, \ldots, f_n)$.
+
+Вблизи точки $\vec{x}$ элемент ФП равен:
+\begin{equation*}
+	d\Gamma=dx_1 dx_2 \cdot \ldots \cdot dx_n.
+\end{equation*}
+
+Пусть $D$ --- область ФП, тогда объём в этой области равен:
+$$V =\int\limits_{D}d\Gamma.$$
+
+Область $D$ образуют точки ФП, которые можно рассматривать как точки разных ФТр в каждый момент времени. Это \textit{фазовая капля} объёма $V$ в момент времени $t$.
+\begin{align*}
+	D &= D(t), \\
+	V &= \int\limits_{D(t)}d\Gamma.
+\end{align*}
+
+\begin{theorem}[(Лиувилля-Остроградского)]\label{th:liouville_ostrograd}
+	$$\frac{dV}{dt}=\int\limits_{D(t)}\mathrm{div}\vec{f}d\Gamma, \qquad \textnormal{где} \quad \vec{f}=\frac{d\vec{x}}{dt}.$$
+\end{theorem}
+
+\begin{proof}
+	За время $\tau$ координаты точек области $D$ изменятся.
+	$$x_i(t) \xrightarrow{\tau} x_i(t+\tau).$$
+	
+	Тогда и область $D$ и объём $V$ также изменятся соответственно.
+	$$D(t) \xrightarrow{\tau} D(t+\tau).$$
+	$$V(t) \xrightarrow{\tau} V(t+\tau).$$
+	
+	Учитывая тот факт, что ФТр не пересекаются, можно утверждать, что между $x_i(t)$ и $x_i(t+\tau)$ существует взаимно однозначное соответствие.
+	$$x_i(t+\tau)=\phi(x_1, x_2, \ldots, x_n, \tau).$$
+	
+	Обозначим: $y_i=x_i(t+\tau)$, тогда $y_i=\phi(x_1, x_2, \ldots, x_n, \tau), \quad i=\overline{1,n}.$ Это соотношение можно интерпретировать как преорбразование системы координат $(x_1, x_2, \ldots, x_n)$ в систему координат $(y_1, y_2, \ldots, y_n)$. В новой системе координат элемент ФП равен:
+	$$d\tilde{\Gamma}=dy_1 dy_2 \cdot \ldots \cdot dy_n.$$
+	
+	Два элемента ФП $d\Gamma$ и $d\tilde{\Gamma}$ связаны якобианом преобразования.
+	$$d\tilde{\Gamma}=\mathrm{J} d\Gamma, \qquad \textnormal{где } \mathrm{J}=\abs[\Big]{\frac{\partial(y_1, y_2, \ldots, y_n)}{\partial(x_1, x_2, \ldots, x_n)}}.$$
+	
+	Получаем выражение для объёма:
+	\begin{align}\label{eq:volume}
+		V(t+\tau)=\int\limits_{D(t)}d\tilde{\Gamma}=\int\limits_{D(t)}\mathrm{J}d\Gamma.
+	\end{align}
+	
+	Пусть $\tau$ достаточно малый интервал: $\tau=dt$.
+	
+	Используя уравнение движения (\ref{eq:moving}) в координатном виде можно записать следующее соотношение:
+	$$y_i=x_i(t+\tau)=x_i(t+dt)=x_i(t)+dx_i=x_i(t)+f_idt.$$
+	
+	Тогда
+	$$\mathrm{J}=\det\Big(\frac{\partial y_i}{\partial x_k}\Big)=
+	\det\Big(\frac{\partial x_i}{\partial x_k}+dt\frac{\partial f_i}{\partial x_k}\Big)=\det(\hat{E}+\hat{F}dt),$$
+	
+	где $\hat{E}_{(n\times n)}$ --- единичная матрица, $\hat{F}=\Big(\frac{\partial f_i}{\partial x_k}\Big)$, $F_{ik}=\frac{\partial f_i}{\partial x_k}$, $(i,k)=\overline{1,n}$.
+	
+	Раскладываем $\mathrm{J}$ в ряд Тейлора по степеням $dt$ с точностью до бесконечно малого $2$ порядка:
+	$$\det\Big(\frac{\partial y_i}{\partial x_k}\Big)=1+\mathrm{Tr} \Big(\frac{\partial f_i}{\partial x_k}\Big)dt+o((dt)^2), \qquad
+	\textnormal{где } \mathrm{Tr}\Big(\frac{\partial f_i}{\partial x_k}\Big)=\mathrm{div}\vec{f}.$$
+	
+	Таким образом, якобиан равен:
+	\begin{align}\label{eq:jacobian}
+		\mathrm{J} \approx 1+\mathrm{div}\vec{f}dt.
+	\end{align}
+	
+	Из выражений (\ref{eq:volume}) и (\ref{eq:jacobian}) получаем:
+	$$V(t+\tau)=V(t)+dt\int\limits_{D(t)}\mathrm{div}\vec{f}d\Gamma \quad \Rightarrow \quad \frac{dV}{dt}=\int\limits_{D(t)}\mathrm{div}\vec{f}d\Gamma.$$
+\end{proof}
+
+\begin{consequence}
+	Величина фазового объёма гамильтоновых систем не изменяется с течением времени.
+	Рассмотрим гамильтонову систему:
+	\begin{align}\label{eq:hamilton}
+		\begin{cases}
+			\frac{dP_i}{dt}=-\frac{\partial \mathcal{H}}{\partial x_i} \\
+			\frac{dx_i}{dt}=\frac{\partial \mathcal{H}}{\partial P_i}.
+		\end{cases}
+	\end{align}
+	
+	Принято обозначение: $\mathrm{div}\vec{f}=\Lambda$. Тогда
+	\begin{align*}
+		\Lambda &=\sum\limits_{i=1}^{n}\Big(\frac{\partial \dot{x}_i}{\partial x_i} + \frac{\partial \dot{p}_i}{\partial p_i}\Big) =\Big[\textnormal{подставляем }(\ref{eq:hamilton})\Big] \\ &=\sum\limits_{i=1}^{n}\Big(\frac{\partial}{\partial x_i}\frac{\partial \mathcal{H}}{\partial P_i} + \frac{\partial}{\partial p_i}\frac{\partial \mathcal{H}}{\partial x_i}\Big)=0 \\
+		\Lambda&=0 \quad \Rightarrow \quad \frac{dV}{dt}=0 \quad \Rightarrow \quad V=const. 
+	\end{align*}
+\end{consequence}
+
+\begin{consequence}
+	Пусть область $D$ достаточно мала так, чтобы подынтегральное выражение в (\ref{th:liouville_ostrograd}) можно было считать постоянным.
+	\begin{align*}
+		\frac{dV}{dt} &=V\mathrm{div}\vec{f} \\
+		\frac{1}{V}\frac{dV}{dt} &=\mathrm{div}\vec{f}=\sum\limits_{i=1}^{n} \frac{\partial f_i}{\partial x_i}.
+	\end{align*}
+	
+	Рассмотрим частный случай, когда $f_i$ --- линейная функция координат.
+	\begin{align*}
+		f_i &=\sum\limits_{k=1}^{n} a_{ik}x_k \quad \Rightarrow \quad
+		\frac{1}{V}\frac{dV}{dt}=\sum\limits_{k=1}^{n} a_{ii}=\Lambda \quad \Rightarrow \\
+		&\Rightarrow \quad V(t) = V_0\exp(\Lambda t), \quad \textnormal{где } V_0\equiv V(0).
+	\end{align*}
+\end{consequence}
+
+\section{Математические модели и классификация ДС}
+
+Существует две основные модели: поток и отображение.
+
+\subsection{Модель-поток (flows)}
+
+Модель задаётся ДУ:
+\begin{equation}\label{eq:flows}
+	\frac{dx_i}{dt}=f_i(\{x_k(t)\}, \{a_j\}, t), \qquad (i,k)=\overline{1,n}; j=\overline{1,m}.
+\end{equation}
+
+\begin{definition}[Модель-поток]
+	Модель вида (\ref{eq:flows}), в которой время непрерывно, называется модель-поток.
+\end{definition}
+ 
+ Уравнение (\ref{eq:flows}) можно записать в векторном виде:
+ \begin{equation}
+	 \frac{d\vec{x}}{dt}=\vec{f}(\vec{x}(t), \vec{a}, t).
+ \end{equation}
+ 
+ Часто удобно считать правую часть уравнения (\ref{eq:flows}) не зависящей явно от времени $t$. Это всегда можно сделать введя динамическую переменную, численно совпадающую со временем.
+ $$\frac{dx_{n+1}}{dt}=1 \quad \Rightarrow \quad x_{n+1}=t.$$
+ 
+ В этом случае ФП является расширенным ФП.
+
+\subsection{Модель-отображение (maps)}
+
+Это класс моделей, в которых время дискретно: $\{t_n\}, n \in \mathbb{Z}$. Номер $n$ момента времени $t_n$ принимается за независимую переменную.
+
+\begin{example}
+	\begin{align*}
+		t:& \qquad 0c \qquad 5c \qquad 10c \qquad 15c \qquad \ldots \\
+		&\qquad \downarrow \qquad \downarrow \qquad \downarrow \qquad \downarrow \\
+		n:& \qquad 1 \qquad \quad 2 \qquad \quad 3 \qquad \quad 4 \qquad \ldots
+	\end{align*}
+\end{example}
+
+Тогда уравнения движения модели-отображения выражают значения динамических переменных в момент времени $(n+1)$ через значение динамических переменных в момент времени $n$.
+
+\begin{equation}\label{eq:maps}
+	\vec{X}(n+1)=\vec{M}(\vec{X}(n), \vec{a}).
+\end{equation}
+
+\begin{definition}[Модель-отображение]
+	Модель вида (\ref{eq:maps}), в которой время дискретно, называется модель-отображение.
+\end{definition}
+
+Рассмотрим источники этих моделей. Пусть реальная система имеет характерный временной масштаб $\mathrm{T}$.
+\begin{itemize}
+	\item За состоянием потока $x(t)$ следят в избранные моменты времени $t_n$, а не в произвольные. Эти $t_n$ разделены интервалом $\tau \approx \mathrm{T}$.
+	\begin{remark*}
+		$\tau \leq \mathrm{T}$, но ни в коем случае не $\tau > \mathrm{T}$.
+	\end{remark*}
+	Таким образом,
+	$$\vec{x}(t_0+n\tau)=\vec{x}_n \textnormal{ --- временной ряд}.$$
+	
+	\item Условие $\tau >> \mathrm{T}$ используется для численного решения уравнения (\ref{eq:flows}); потоки (\ref{eq:flows}) заменяем отображениями (\ref{eq:maps}), то есть дискретными разностными схемами для потоков.
+	\begin{example}[Метод ломаных Эйлера]
+		$$x_{n+1}=x_n+hf(x_n), \quad h << \mathrm{T}.$$
+	\end{example}
+	
+	\item Источником модели-отображения являются также системы, в которых дискретный счет времени.
+	\begin{example}[Динамика популяций]
+		$u$ --- количество особей, \\
+		$n$ --- номер поколения. \\
+		$$u_{n+1}=u_n+u_{n-1}.$$
+		ФТр этой системы с начальными условиями $u_1=1, u_2=1$ --- это числа Фибоначчи.
+	\end{example}
+\end{itemize}
+
+\subsection{Классификация ДС}
+
