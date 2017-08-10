@@ -1,2 +1,2 @@
-#NonlinearAnalysis
+# Nonlinear-Analysis
 Конспект лекций по нелинейному анализу Кравцова О.В.
