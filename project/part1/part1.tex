@@ -369,3 +369,72 @@ $$V =\int\limits_{D}d\Gamma.$$
 
 \subsection{Классификация ДС}
 
+\begin{definition}[Автономная ДС]
+	Если ДС задана моделью потоков:
+	\begin{equation}\label{eq:flows1}
+	\frac{dx_i}{dt}=f_i(\{x_k(t)\}, \{a_j\}), \qquad (i,k)=\overline{1,n}; j=\overline{1,m},
+	\end{equation}
+	а в правую часть не входит время явно и все параметры не зависят от времени, то такая ДС называется автономной. 
+\end{definition}
+
+\begin{definition}[Неавтономная ДС]
+	Если в правую часть входит явно время и существует такое $a_j$, зависящее от времени, то такая ДС называется неавтономной. 
+\end{definition}
+
+Данные определения справедливы и для модели-отображения, где вместо (\ref{eq:flows1}) используется уравнение:
+\begin{equation}\label{eq:maps1}
+	\vec{X}(n+1)=\vec{M}(\{\vec{X}(n)\}, \{\vec{a}\}).
+\end{equation}
+
+\begin{definition}[Локальная диссипация]
+	Для ДС-потока локальной диссипацией $G(\vec{x})$ в точке $\vec{x}$ ФП принято называть дивергенцию поля фазовых скоростей в этой точке, взятой с обратным знаком.
+	$$G(\vec{x})=-\mathrm{div}\dot{\vec{x}}=-\sum\limits_{i=1}^{n}\frac{\partial \dot{x_i}}{\partial x_i}=-\mathrm{div}\vec{f}.$$
+\end{definition}
+
+Из теоремы Лиувилля-Остроградского следует, что для малого $V$ вблизи точки $\vec{x}$ получаем уравнение:
+$$\frac{1}{V} \frac{dV}{dt}=\mathrm{div}\vec{f} \qquad \Rightarrow \qquad \frac{1}{V} \frac{dV}{dt}=-G(\vec{x}).$$
+
+Это означает, что относительная скорость изменения фазового объема равна диссипации с обратным знаком.
+
+\begin{definition}[Диссипативная система]
+	Системы, для которых $G(\vec{x})\neq 0$ во всех точках ФП называют диссипативными.
+\end{definition}
+
+\begin{definition}[Консервативная система]
+	Системы, для которых $G(\vec{x})=0$ во всех точках ФП называют консервативными.
+\end{definition}
+
+\begin{remark}
+	Согласно этому определению консервативность --- это сохранение фазового объема, а не энергии.
+\end{remark}
+
+Любые гамильтоновые системы являются консервативными, но все консервативные системы являются гамитоновыми.
+
+\begin{example}
+	\begin{equation}
+		\begin{cases}
+			\dot{x}=yz \\
+			\dot{y}=xz \qquad \Rightarrow \qquad G(\vec{x})=0 \\
+			\dot{z}=xy 
+		\end{cases}
+	\end{equation}
+	
+	Однако система не гамильтонова.
+\end{example}
+
+Рассмотрим диссипацию для системы , заданной моделью-отображением (\ref{eq:maps}). Для одного отображения:
+$$V^{\prime}= \mathrm{J}V, \qquad \textnormal{где } \mathrm{J}=\det\Big(\frac{\partial M_i}{\partial x_i}\Big).$$
+
+Найдем локальную диссипацию:
+\begin{itemize}
+	\item для потока:
+	$$G(\vec{x})=-\frac{1}{V} \frac{dV}{dt}=-\frac{d\ln \abs{V}}{dt}.$$ \\
+	\item для отображения:
+	\begin{align*}
+		G(\vec{x}) &=-\frac{\Delta \ln \abs{V}}{\Delta n}=\Big[\Delta n=1 \textnormal{ --- локальность} \Big]=-\Delta \ln \abs{V} \\
+		&= -(\ln \abs{V^{\prime}}-\ln \abs{V})=-(\ln \abs{\mathrm{J}V}-\ln \abs{V})=-\ln \abs{\mathrm{J}}.
+	\end{align*}
+\end{itemize}
+
+Таким образом, локальная диссипация для модели-отображения --- это логарифм абсолютной величины якобиана, взятый с обратным знаком.
+$$G(\vec{x})=-\ln \abs{\mathrm{J}}.$$
