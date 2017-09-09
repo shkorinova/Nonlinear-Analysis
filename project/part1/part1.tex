@@ -543,7 +543,7 @@ $$G(\vec{x})=-\ln \abs{\mathrm{J}}.$$
 При изменении параметра системы $\vec{a}=(a_1, a_2, \ldots, a_k)$ в общем случае изменяется и свойство её исключительных решений. Очень важным является найти границы значений параметров, при переходе через которые меняется и/или число и тип решений.
 
 \begin{definition}[Бифуркация, точка бифуркации]
-	Качественное изменение поведения ДС вследствие перехода значений параметров системы через некоторое граничное значение называется бифуркацией, а соответствующее граничное значение $\vec{a}=\vec{a}_b$ называется точкой бифуркации.
+	Качественное изменение поведения ДС при переходе значений параметров системы через некоторое граничное значение называется бифуркацией, а соответствующее граничное значение $\vec{a}=\vec{a}_b$ называется точкой бифуркации.
 \end{definition}
 
 Одной из важнейших задач исследования ДС является задача исследования хаотического движения, то есть выявление областей их существования в пространстве параметров и определение зависимости характеристик таких движений (например таких, как показатель Ляпунова, корреляционные функции) от параметров ДС.
@@ -555,3 +555,133 @@ $$G(\vec{x})=-\ln \abs{\mathrm{J}}.$$
 \end{definition} 
 
 \section{Особые точки}
+
+Рассмотрим автономную систему:
+\begin{align*}
+	\frac{d\vec{x}}{dt}=f_i(\vec{x}, \vec{a}), \qquad \textnormal{где } \vec{x}&=(x_1, x_2,\ldots, x_n), \\
+	\vec{a}&=(a_1, a_2, \ldots, a_k), \\
+	\vec{f}&=(f_1, f_2, \ldots, f_n).
+\end{align*}
+
+Особая точка: $f_i(\vec{x}, \vec{a}) \Big|_{\vec{x}=\vec{x}_{f}}=0$.
+
+Сами по себе особые точки не представляют интереса. Более важным является то, как ведут себя ФТр вблизи этих точек.
+
+\begin{example}[Осцилятор без затухания]
+	$$\ddot{x} + \omega^2 x = 0$$
+	\begin{equation*}	
+		\begin{cases}
+			\frac{dx}{dt} = y \\
+			\frac{dy}{dt} = -\omega^2 x
+		\end{cases}	
+	\end{equation*}
+	
+	Особая точка:
+	\begin{align*}
+		y &= 0, \\
+		-&\omega^2 x = 0, \\
+		x &= 0 \quad \Rightarrow \quad (0,0).
+	\end{align*}
+	
+	Найдем уравнение ФТр:
+	\begin{align*}
+		\frac{dy}{dx} &= -\frac{\omega^2 x}{y} \\
+		y d&y = -\omega^2 x dx \\
+		\frac{y^2}{2} &+ \frac{x^2 \omega^2}{2} = const.
+	\end{align*}
+\end{example}
+
+\begin{example}[Осцилятор с затуханием]
+	$$\ddot{x} + 2 \gamma \dot{x} + \omega^2 x = 0$$
+	\begin{equation*}	
+		\begin{cases}
+			\frac{dx}{dt} = y \\
+			\frac{dy}{dt} = -2 \gamma y - \omega^2 x
+		\end{cases}	
+	\end{equation*}
+	
+	Особая точка: $(0,0)$.
+
+	Найдем уравнение ФТр:
+	\begin{align*}
+		\frac{dy}{dx} &= -\frac{2 \gamma y + \omega^2 x}{y} \\
+		\frac{dy}{dx} &= -2 \gamma - \omega^2 \frac{x}{y}.
+	\end{align*}
+	
+	Рассмотрим случаи:
+	\begin{itemize}
+		\item $\gamma \geq 0$:
+		\begin{itemize}
+			\item $\gamma < \omega$: устойчивый фокус.
+			\item $\gamma > \omega$: устойчивый узел.
+		\end{itemize}
+		
+		\item $\gamma < 0$:
+		\begin{itemize}
+			\item $\gamma < \omega$: неустойчивый фокус.
+			\item $\gamma > \omega$: неустойчивый узел.
+		\end{itemize}
+	\end{itemize}
+\end{example}
+
+\begin{example}
+	$$\ddot{x} - r^2 x = 0$$
+	\begin{equation*}	
+		\begin{cases}
+			\frac{dx}{dt} = y \\
+			\frac{dy}{dt} =  r^2 x
+		\end{cases}	
+	\end{equation*}
+	
+	Особая точка: $(0,0)$.
+	
+	Найдем уравнение ФТр:
+	\begin{align*}
+		\frac{dy}{dx} &= \frac{r^2 x}{y} \\
+		y d&y = r^2 x dx.
+	\end{align*}
+	
+	Общий вид решения:
+	$$x = c_1 e^{rt} + c_2 e^{-rt}, \quad \textnormal{где } c_1, c_2 - \textnormal{константы интегрирования}.$$
+	
+	Рассмотрим случаи:
+	\begin{itemize}
+		\item $c_1 = 0, t \rightarrow \infty \quad \Rightarrow \quad x \rightarrow 0$,
+		\item $c_2 = 0, t \rightarrow -\infty \quad \Rightarrow \quad x \rightarrow 0$,	
+	\end{itemize}
+	
+	т.е. особые точки существуют только тогда, когда либо $c_1$, либо $c_2$ равно $0$.
+	
+	Таким образом, уравнение ФТр:
+	\begin{equation*}
+		\frac{y^2}{2E} - \frac{x^2}{2E/t^2} = 1,
+	\end{equation*}
+	
+	где $E=c_1c_2=const$.
+
+	\begin{itemize}
+		\item Если $E=0$, т.е. $\frac{y^2}{2} - \frac{x^2}{2/t^2} = E = 0$, тогда ФТр --- седло.
+		\item Если $E \neq 0$, тогда ФТр --- гиперболы.	
+	\end{itemize} 
+\end{example}
+
+\begin{example}[Физический маятник]
+	$$\ddot{x} + \frac{q}{l} \sin x = 0$$
+	\begin{equation*}	
+		\begin{cases}
+			\frac{dx}{dt} = y \\
+			\frac{dy}{dt} = -\frac{q}{l} \sin x
+		\end{cases}	
+	\end{equation*}
+	
+	Особые точки: $y = 0; \quad x = \pm 2\pi n, \quad n \in \mathbb{Z}$.
+	
+	Найдем уравнение ФТр:
+	\begin{align*}
+		\frac{dy}{dx} &= \frac{\frac{q}{l} \sin x}{y} \\
+		y d&y = \frac{q}{l} \sin x dx \\
+		\frac{y^2}{2} &- \frac{q}{l} \cos x = E
+	\end{align*}
+\end{example}
+
+
